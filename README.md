@@ -10,6 +10,6 @@ In addition, I goal is to create methods that allow you to:
   `search`, 
   `where`, 
   `insert`,
-  `update`,
+  `update`, and
   `save`
 
