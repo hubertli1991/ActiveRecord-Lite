@@ -9,8 +9,9 @@ class SQLObject
     columns = DBConnection.execute2(<<-SQL)
       SELECT *
       FROM  #{self.table_name}
+      LIMIT 0
     SQL
-    # debugger
+
     @columns = columns[0].map { |col| col.to_sym }
   end
 
@@ -33,7 +34,7 @@ class SQLObject
   end
 
   def self.table_name
-    @table_name ||= "#{self.name.underscore.pluralize}"
+    @table_name ||= "#{self.to_s.tableize}"
   end
 
   def self.all
@@ -98,7 +99,6 @@ class SQLObject
   end
 
   def update
-    # debugger
     question_marks = self.class.columns.map { |col| "#{col} = ?" }
     question_marks_string = question_marks.join(', ')
 
@@ -110,9 +110,7 @@ class SQLObject
   end
 
   def save
-    # debugger
     if self.id
-      # debugger
       update
     else
       insert

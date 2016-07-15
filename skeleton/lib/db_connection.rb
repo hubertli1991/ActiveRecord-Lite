@@ -33,12 +33,12 @@ class DBConnection
 
   def self.execute(*args)
     print_query(*args)
-    instance.execute(*args)
+    instance.execute(*args[0], *args[1..-1])
   end
 
   def self.execute2(*args)
     print_query(*args)
-    instance.execute2(*args)
+    instance.execute2(*args[0], *args[1..-1])
   end
 
   def self.last_insert_row_id
