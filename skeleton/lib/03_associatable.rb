@@ -17,8 +17,9 @@ end
 class BelongsToOptions < AssocOptions
 
   def initialize( assoc_name, options = {} )
-    defaults = { primary_key: :id, foreign_key: "#{assoc_name.to_s}_id".to_sym, class_name: "#{assoc_name.to_s}".camelcase }
-
+    defaults = { primary_key: :id,
+                 foreign_key: "#{assoc_name.to_s}_id".to_sym,
+                 class_name: "#{assoc_name.to_s}".camelcase }
     defaults.keys.each do |key|
       self.send( "#{key}=", options[key] || defaults[key] )
     end
@@ -28,8 +29,9 @@ end
 class HasManyOptions < AssocOptions
 
   def initialize( assoc_name, self_class_name, options = {} )
-    defaults = { primary_key: :id, foreign_key: "#{self_class_name.singularize.underscore}_id".to_sym, class_name: assoc_name.to_s.singularize.camelcase }
-
+    defaults = { primary_key: :id,
+                 foreign_key: "#{self_class_name.singularize.underscore}_id".to_sym,
+                 class_name: assoc_name.to_s.singularize.camelcase }
     defaults.keys.each do |key|
       self.send("#{key}=", options[key] || defaults[key])
     end
